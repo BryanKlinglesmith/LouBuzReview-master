@@ -1,0 +1,191 @@
+﻿
+@model IEnumerable<LouBuzReview.Models.WebsiteReview>
+
+@{
+    ViewBag.Title = "Louisville Business Review";
+}
+
+<!--Latest Review Starts Here -->
+<h2 class="border-bottom text-bold">Latest Business Reviews</h2>
+<div class="bg-primary">
+    <div class="">
+        <table>
+
+            @foreach (var item in Model)
+            {
+                var imageName = "~/Images/" + item.Website.Category + ".png";
+
+                <tr class="border-bottom">
+                    <td class="vertical-align-center">
+                        <img class="pxy" src="@Url.Content(imageName)" alt="png" style=" width: 100px;" />
+
+                    </td>
+                    <td class="col-md-12">
+                        <h4 class="text-bold">
+                            @Html.DisplayFor(modelItem => item.Website.WebsiteName)
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            @* Adding font awesome stars based on rating *@
+                            @if (item.Ratings.ToString().Equals("OneStar"))
+                            {
+                                <i class="fa fa-star" style="font-size:16px;color: red;"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                            }
+                            else if (item.Ratings.ToString().Equals("TwoStars"))
+                            {
+                                <i class="fa fa-star" style="font-size:16px;color: orange;"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: orange;"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                            }
+                            else if (item.Ratings.ToString().Equals("ThreeStars"))
+                            {
+                                <i class="fa fa-star" style="font-size:16px;color: yellow;"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: yellow;"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: yellow;"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                            }
+                            else if (item.Ratings.ToString().Equals("FourStars"))
+                            {
+                                <i class="fa fa-star" style="font-size:16px;color: chartreuse"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: chartreuse"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: chartreuse"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: chartreuse"></i>
+                                <i class="fa fa-star" style="font-size:16px;"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                                <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                            }
+                        </h4>
+                        <p class="text-bold">
+                            By 
+                            <span style="color: chartreuse;">
+                                @Html.DisplayFor(modelItem => item.WebUser.FirstName)
+                                @Html.DisplayFor(modelItem => item.WebUser.LastName)
+                            </span>
+                            on @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </p>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.UserReview)
+                        </p>
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                <td></td>
+                <td class="col-md-12">
+                    <p><a href="@Url.Action("Index", "WebsiteReviews")" class="btn btn-success">More Reviews &raquo;</a></p>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<!--Latest Review Ends Here -->
+<!--Add & Read Review Starts Here -->
+<div class="row border-bottom">
+    <div class="col-md-6">
+        <h2>Add A Review</h2>
+        <p>
+            Create your user profile, add the Website you want to review and explain the quality of the service or product you recived and rate it.
+        </p>
+        <p><a class="btn btn-success @*btn-lg*@" href="@Url.Action("AddAReview", "Home")">New Review &raquo;</a></p>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Read Reviews</h2>
+        <p>
+            You may find helpfull reviews by visitors to Louisville city, how they feel the quality of the services provided by government and private entities.
+            Read them and enjoy.
+        </p>
+        <p><a class="btn btn-success @*btn-lg*@" href="@Url.Action("Index", "WebsiteReviews")">Read Reviews &raquo;</a></p>
+    </div>
+</div>
+<!--Add & Read Review Ends Here -->
+<!--Review Louisville Starts Here -->
+<div class="col-md-12 ">
+    <div class="row border-bottom bg-primary" style="padding-bottom:30px;">
+        <div class="col-md-12">
+            <h2>Rate Louisville</h2>
+            <p>Find a popular attractions in Louisville and explain how you feel about the quality of the services they provde and share with others</p>
+            <p>In the following section, you can review any thing related to Louisville. First create your profile then select or add the website you want to review and then add your comments whether you like or dislike service, institution or a product it offers.</p>
+            <p>
+                <button class="btn btn-success " onclick="showHide(); toogleText()"><span id="myToggle">Show</span> &raquo;</button>
+            </p>
+        </div>
+    </div>
+
+    <!--Review Louisville Show/Hide section Starts Here -->
+    <div id="myDIV" style="display:none">
+        <div class="row border-bottom">
+            <div class="col-md-4">
+                <h2>Review Louisville City</h2>
+                <p>
+                    Rate Louisville City with your experiance
+                </p>
+                <p><a class="btn btn-success @*btn-lg*@" href="@Url.Action("Create", "WebsiteReviews")">Review &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Review Code Louisville</h2>
+                <p>Start in the menu item</p>
+                <p><a class="btn btn-success " href="@Url.Action("Create", "WebsiteReviews")">Review &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Review Hotels</h2>
+                <p>You can suggest any concerns or improvements to this website</p>
+                <p><a class="btn btn-success " href="@Url.Action("Create", "WebsiteReviews")">Review &raquo;</a></p>
+            </div>
+        </div>
+        <div class="row border-bottom" style="padding-bottom:30px;">
+            <div class="col-md-4">
+                <h2>Review Restaurants</h2>
+                <p>You can suggest any concerns or improvements to this website</p>
+                <p><a class="btn btn-success " href="@Url.Action("Create", "WebsiteReviews")">Review &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Review 4th Street Live</h2>
+                <p>You can suggest any concerns or improvements to this website</p>
+                <p><a class="btn btn-success " href="@Url.Action("Create", "WebsiteReviews")">Review &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Review Slugger Museum</h2>
+                <p>You can suggest any concerns or improvements to this website</p>
+                <p><a class="btn btn-success " href="@Url.Action("Create", "WebsiteReviews")">Review &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+    <!--Review Louisville Show/Hide section Ends Here -->
+</div>
+<!--Review Louisville Ends Here -->
+<!--Following Script related to above Show/Hide section -->
+<script>
+    function showHide() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function toogleText() {
+        var x = document.getElementById("myToggle");
+        if (x.innerHTML === "Hide") {
+            x.innerHTML = "Show";
+        } else {
+            x.innerHTML = "Hide";
+        }
+    }
+</script>

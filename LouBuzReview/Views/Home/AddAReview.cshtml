@@ -1,0 +1,116 @@
+﻿@model LouBuzReview.ViewModels.AddAWebsiteReview
+
+@{
+    ViewBag.Title = "AddAReview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@* 
+    This view is used to add Review, reviewer and business information
+*@
+<h2>Add A Business Review</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <br />
+    <h4>Let us know your thought!</h4>
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div><h3><strong>Add Your Information</strong></h3></div>
+        @Html.LabelFor(model => model.WebUser.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.WebUser.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name" } })
+            @Html.ValidationMessageFor(model => model.WebUser.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WebUser.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.WebUser.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last Name" } })
+            @Html.ValidationMessageFor(model => model.WebUser.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WebUser.City, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.WebUser.City, new { htmlAttributes = new { @class = "form-control", placeholder = "City" } })
+            @Html.ValidationMessageFor(model => model.WebUser.City, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WebUser.State, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.WebUser.State, new { htmlAttributes = new { @class = "form-control", placeholder = "State" } })
+            @Html.ValidationMessageFor(model => model.WebUser.State, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div><h3><strong>Add Business Information</strong></h3></div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Website.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.Website.Category, "Select a Category", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Website.Category, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Website.WebsiteUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Website.WebsiteUrl, new { htmlAttributes = new { @class = "form-control", placeholder = "Website URL" } })
+            @Html.ValidationMessageFor(model => model.Website.WebsiteUrl, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Website.WebsiteName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Website.WebsiteName, new { htmlAttributes = new { @class = "form-control", placeholder = "Website Name" } })
+            @Html.ValidationMessageFor(model => model.Website.WebsiteName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div><h3><strong>Review the Business</strong></h3></div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.WebsiteReview.Ratings, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.WebsiteReview.Ratings, "Select a Rating", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.WebsiteReview.Ratings, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WebsiteReview.UserReview, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.UserReview, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.TextAreaFor(model => model.WebsiteReview.UserReview, new { @class = "form-control", placeholder = "Explain your thought" })
+            @Html.ValidationMessageFor(model => model.WebsiteReview.UserReview, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WebsiteReview.CreatedDate, "Date", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.EditorFor(model => model.WebsiteReview.CreatedDate, new { htmlAttributes = new { @Value = DateTime.Today, @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.WebsiteReview.CreatedDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <div class="col-md-10 ">
+            <button type="submit" value="Save" class="btn btn-success">Save</button>
+            <a href="@Url.Action("Index", "WebsiteReviews")" class="btn btn btn-warning "><span class="glyphicon"></span>Cancel</a>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-success "><span class="glyphicon"></span>Home</a>
+        </div>
+    </div>
+
+</div>
+}
+

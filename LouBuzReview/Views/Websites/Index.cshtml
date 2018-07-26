@@ -1,0 +1,51 @@
+﻿@model IEnumerable<LouBuzReview.Models.Website>
+
+@{
+    ViewBag.Title = "Business Info";
+}
+<div>
+    <table>
+        <tr>
+            <td style="width: 100%"><h2>Registered Business Information</h2></td>
+            @*<td align="right" style="width: 100%"> <a href="@Url.Action("Create", "Websites")" class="btn btn-success" title="Add a new website for review">Add New Business</a></td>*@
+        </tr>
+    </table>
+</div>
+<br />
+<div class="bg-primary">
+    <table class="table">
+        <tr class="btn-success">
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WebsiteName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WebsiteUrl)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WebsiteName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WebsiteUrl)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id=item.WebsiteID })" class="btn btn-warning " title="Edit this item">Edit</a>
+                <a href="@Url.Action("Details", new { id=item.WebsiteID })" class="btn btn-success " title="View more details on this item">Details</a>
+                <a href="@Url.Action("Delete", new { id=item.WebsiteID })" class="btn btn-danger " title="Delete this item">Delete</a>
+            </td>
+        </tr>
+        }
+
+    </table>
+</div>

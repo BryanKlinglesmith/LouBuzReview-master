@@ -1,0 +1,24 @@
+﻿@model LouBuzReview.Models.Website
+
+@{
+    ViewBag.Title = "Delete Business";
+}
+
+<h2>Delete Business</h2>
+
+<h4>Do you want to delete <strong>@Html.DisplayFor(model => model.WebsiteName)</strong> Business?</h4>
+<div>
+    <hr />
+
+    @Html.Partial("_WebsiteDetails")
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="submit" value="Delete" class="btn btn-danger" title="Delete this record">Delete</button>
+            <a href="@Url.Action("Index")" class="btn btn-warning" title="Cancel and go back to previous screen"><span class="glyphicon"></span>Cancel</a>
+        </div>
+    }
+</div>

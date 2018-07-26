@@ -1,0 +1,19 @@
+﻿@model LouBuzReview.Models.WebsiteReview
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Review Details</h2>
+
+<div>
+    <h4>Website Review</h4>
+    <hr />
+    @Html.Partial("_WebDetails")
+</div>
+<div class="form-actions no-color">
+    <a href="@Url.Action("Edit", new { id = Model.ID })" class="btn btn-success" title="Edit this record"><span class="glyphicon"></span>Edit</a>
+    <a href="@Url.Action("Index")" class="btn btn-warning" title="Cancel and go back to previous screen"><span class="glyphicon"></span>Cancel</a>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-success "><span class="glyphicon"></span>Home</a>
+</div>
+

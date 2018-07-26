@@ -1,0 +1,27 @@
+﻿@model LouBuzReview.Models.WebUser
+
+@{
+    ViewBag.Title = "Delete User";
+}
+
+<h2>Remove a Profile</h2>
+<div>
+    @Html.Partial("_WebUserDetails")
+    <h3>
+        Do you want to delete the profile of
+        <strong>
+            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.LastName) ?
+        </strong>
+    </h3>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="submit" value="Delete" class="btn btn-danger" title="Delete this record">Delete</button>
+            <a href="@Url.Action("Index")" class="btn btn-warning" title="Cancel and go back to previous screen"><span class="glyphicon"></span>Cancel</a>
+        </div>
+    }
+</div>

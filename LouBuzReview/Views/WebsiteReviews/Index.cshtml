@@ -1,0 +1,122 @@
+﻿
+
+@model IEnumerable<LouBuzReview.Models.WebsiteReview>
+
+@{
+    ViewBag.Title = "Business Review";
+}
+@*
+    This is the index view for WebsiteReview Controller. This displays Business Reviews and reviewer name and business information.
+    You can add , edit or delete review. 
+    Hope cascading delete working
+*@
+
+@if (TempData["Message"] != null)
+{
+<div class="alert btn-success alert-dismissible messages" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    @TempData["Message"]
+</div>
+}
+
+<div>
+    <table>
+        <tr>
+            <td style="width: 100%"><h2><strong>Louisville Business Review Information</strong></h2></td>
+            <td align="right" style="width: 100%"> <a href="@Url.Action("AddAReview", "Home")" class="btn btn-success" title="Add a new business review">Add New Business Review</a></td>
+        </tr>
+    </table>
+</div>
+<br />
+<div class="bg-primary">
+    <table class="table">
+        <tr class="btn-success">
+            <th style="display:none"></th>
+            <th style="display:none"></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website.WebsiteName)
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Ratings)*@
+                User Rating
+            </th>
+            <th class="col-md-5">
+                User Review
+            </th>
+
+            <th>User Action Area</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td style="display:none">@Html.DisplayFor(modelItem => item.WebUser.UserID)</td>
+            <td style="display:none">@Html.DisplayFor(modelItem => item.Website.WebsiteID)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website.WebsiteName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WebUser.FirstName)
+                @Html.DisplayFor(modelItem => item.WebUser.LastName)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Ratings)*@
+                @if (item.Ratings.ToString().Equals("OneStar"))
+                {
+                    <i class="fa fa-star" style="font-size:16px;color: red;"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                }
+                else if (item.Ratings.ToString().Equals("TwoStars"))
+                {
+                    <i class="fa fa-star" style="font-size:16px;color: orange;"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: orange;"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                }
+                else if (item.Ratings.ToString().Equals("ThreeStars"))
+                {
+                    <i class="fa fa-star" style="font-size:16px;color: yellow;"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: yellow;"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: yellow;"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                }
+                else if (item.Ratings.ToString().Equals("FourStars"))
+                {
+                    <i class="fa fa-star" style="font-size:16px;color: chartreuse"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: chartreuse"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: chartreuse"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: chartreuse"></i>
+                    <i class="fa fa-star" style="font-size:16px;"></i>
+                }
+                else
+                {
+                    <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                    <i class="fa fa-star" style="font-size:16px;color: chartreuse;"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserReview)
+            </td>
+
+            <td>
+                <a href="@Url.Action("Edit", new { id=item.ID })" class="btn btn-warning " title="Edit this review">Edit</a>
+                <a href="@Url.Action("Details", new { id=item.ID })" class="btn btn-success" title="View more details on this review">Details</a>
+                <a href="@Url.Action("Delete", new { id=item.ID })" class="btn btn-danger" title="Delete this review">Delete</a>
+            </td>
+        </tr>
+        }
+    </table>
+</div>

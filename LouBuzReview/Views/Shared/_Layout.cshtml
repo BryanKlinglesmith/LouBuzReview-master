@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Louisville Web Review</title>
+
+    <link rel="stylesheet" href="CSS/normalize.css">
+    <link href="~/CSS/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/CSS/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css">
+    <link href="~/CSS/styles.css" rel="stylesheet">
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Oregano" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Galada|Great+Vibes|Monoton" rel="stylesheet">
+    <!-- JQuery -->
+    
+</head>
+<body>
+    <nav>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("LBR", "Index", "Home", new { area = "" }, new { @class = "navbar-brand header-title-h1" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("User Profiles", "Index", "WebUsers")</li>
+                        <li>@Html.ActionLink("Registered Businesses", "Index", "Websites")</li>
+                        <li>@Html.ActionLink("User Reviews", "Index", "WebsiteReviews")</li>
+                    </ul>
+                    <div class="col-sm-3 col-md-3 pull-right">
+                        <form class="navbar-form" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="SearchName" id="SearchName">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        @Html.Partial("_Header")
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+
+    <div class="panel-footer navbar-fixed-bottom " style="background-color:black;">
+        <footer>
+            <div style="background-color:black;">
+
+                <div class="container text-bold" style="background-color:black;">
+                    <ul>
+                        <li>&copy; @DateTime.Now.Year - Dhanapala Godage </li>
+                        <li> Louisville Busness Review</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    @*<script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>*@
+    @*<script>
+            $('input.datepicker').datepicker({ format: mm / dd / yyyy });
+        </script>*@
+
+</body>
+</html>

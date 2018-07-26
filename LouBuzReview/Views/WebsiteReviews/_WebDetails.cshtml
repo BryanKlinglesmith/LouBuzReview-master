@@ -1,0 +1,86 @@
+﻿@model LouBuzReview.Models.WebsiteReview
+
+@* 
+    This partial view is for Delete and Details View. 
+*@
+
+<dl class="dl-horizontal">
+    <div style="text-decoration: underline"><h4><strong>Profile Info</strong></h4></div>
+    <dt>
+        @Html.DisplayNameFor(model => model.WebUser.FirstName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.WebUser.FirstName)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.WebUser.LastName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.WebUser.LastName)
+    </dd>
+
+
+    <dt>
+        @Html.DisplayNameFor(model => model.WebUser.City)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.WebUser.City)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.WebUser.State)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.WebUser.State)
+    </dd>
+    <div style="text-decoration: underline"><h4><strong>Website Info</strong></h4></div>
+    <dt>
+        @Html.DisplayNameFor(model => model.Website.Category)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Website.Category)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Website.WebsiteName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Website.WebsiteName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Website.WebsiteUrl)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Website.WebsiteUrl)
+    </dd>
+    <div style="text-decoration: underline"><h4><strong>Review Info</strong></h4></div>
+    <dt>
+        @Html.DisplayNameFor(model => model.Ratings)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Ratings)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.UserReview)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.UserReview)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.CreatedDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.CreatedDate)
+    </dd>
+</dl>

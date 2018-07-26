@@ -1,0 +1,128 @@
+﻿
+@model LouBuzReview.Models.WebsiteReview
+
+@*  This is partial view for both Editing and Creating Reviews.
+    However, to create Review, I have added a seperate view under Home view as AddAReview.
+    All related codes is with Home controller for adding a review
+    while for editing reviews, codes with WebsiteReview controller.
+
+    For labels, used DataAnotation and also attributes
+*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    if (@ViewBag.Title == "Add Review")
+    {
+        <h4>Let us know your thought!</h4>
+    }
+    else if (@ViewBag.Title == "Edit Review")
+    {
+        <h4>Update Review Information</h4>
+    }
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @if (@ViewBag.Title == "Edit Review")
+        {
+            @Html.HiddenFor(model => model.WebsiteID)
+        }
+        else
+        {
+            @*do nothing*@
+        }
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.WebUser.FirstName, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.WebUser.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name" } })
+                @Html.ValidationMessageFor(model => model.WebUser.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.WebUser.LastName, htmlAttributes: new { @class = "control-label " })
+                @Html.EditorFor(model => model.WebUser.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last Name" } })
+                @Html.ValidationMessageFor(model => model.WebUser.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.WebUser.City, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.WebUser.City, new { htmlAttributes = new { @class = "form-control", placeholder = "City" } })
+                @Html.ValidationMessageFor(model => model.WebUser.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.WebUser.State, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.WebUser.State, new { htmlAttributes = new { @class = "form-control", placeholder = "State" } })
+                @Html.ValidationMessageFor(model => model.WebUser.State, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Website.Category, htmlAttributes: new { @class = "control-label" })
+                @Html.EnumDropDownListFor(model => model.Website.Category, htmlAttributes: new { @class = "form-control", placeholder = "Category Name" })
+                @Html.ValidationMessageFor(model => model.Website.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Website.WebsiteUrl, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Website.WebsiteUrl, new { htmlAttributes = new { @class = "form-control", placeholder = "Website Url" } })
+                @Html.ValidationMessageFor(model => model.Website.WebsiteUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Website.WebsiteName, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Website.WebsiteName, new { htmlAttributes = new { @class = "form-control", placeholder = "Website Name" } })
+                @Html.ValidationMessageFor(model => model.Website.WebsiteName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Ratings, "Ratings", htmlAttributes: new { @class = "control -label" })
+                @Html.EnumDropDownListFor(model => model.Ratings, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Ratings, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.UserReview, "User Review", htmlAttributes: new { @class = "control -label" })
+                @Html.TextAreaFor(model => model.UserReview, new { @class = "form-control", placeholder = "User Review" })
+                @Html.ValidationMessageFor(model => model.UserReview, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.CreatedDate, "Date", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @Value = @DateTime.Now.ToLocalTime(), disabled = "disabled", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <div class="col-md-10">
+                <button type="submit" value="Save" class="btn btn-success">Save</button>
+                <a href="@Url.Action("Index")" class="btn btn btn-warning "><span class="glyphicon"></span>Cancel</a>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-success "><span class="glyphicon"></span>Home</a>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
